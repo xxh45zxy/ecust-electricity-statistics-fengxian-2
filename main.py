@@ -77,7 +77,7 @@ if PUSH_PLUS_TOKEN:
     text += tablestr + "\n"
     if PUSH_PLUS_DETAIL and GITHUB_TRIGGERING_ACTOR:
         website = (
-            f"https://{GITHUB_TRIGGERING_ACTOR}.github.io/ecust-electricity-statistics-fengxian-1"
+            f"https://{GITHUB_TRIGGERING_ACTOR}.github.io/ecust-electricity-statistics-fengxian-2"
         )
         text += f"[图表显示更多数据]({website})\n"
         logging.info("show more details")
