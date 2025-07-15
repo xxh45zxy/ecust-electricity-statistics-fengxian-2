@@ -82,5 +82,5 @@ if PUSH_PLUS_TOKEN:
         text += f"[图表显示更多数据]({website})\n"
         logging.info("show more details")
     with suppress():
-        sendMsgToWechat(PUSH_PLUS_TOKEN, f"{stime}华理奉贤电费统计", text, "markdown")
+        sendMsgToWechat(PUSH_PLUS_TOKEN, f"{stime}华理奉贤临时电费统计", text, "markdown")
         logging.info("push plus executed successfully")
