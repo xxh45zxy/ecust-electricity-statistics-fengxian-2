@@ -8,6 +8,19 @@ from pathlib import Path
 
 import requests
 
+# 你理的 buildid 真是太棒了
+def building_number_map(id: int | str) -> int:
+    """
+    将华理的 buildid 转换为实际楼号（奉贤）
+    """
+    match int(id):
+        case x if x >= 27 and x <= 46:
+            return x - 22
+        case x if x >= 49 and x <= 52:
+            return x - 24
+        case other:
+            return other
+
 URL = os.environ.get("URL").strip()
 PUSH_PLUS_TOKEN = os.environ.get("PUSH_PLUS_TOKEN", "").strip()
 PUSH_PLUS_DETAIL = os.environ.get("PUSH_PLUS_DETAIL", "").strip()
@@ -73,7 +86,7 @@ if PUSH_PLUS_TOKEN:
     for item in reversed(last_few_items):
         tablestr += f'| {index} | {item["time"]} | {item["kWh"]}kWh |\n'
         index += 1
-    text = f"## 当前剩余电量：{remain}kWh\n个人信息：{buildid[0]}号楼{roomid[0]}室\n\n统计时间：{stime}\n\n### 最近{days_to_show}天数据\n"
+    text = f"## 当前剩余电量：{remain}kWh\n个人信息：{building_number_map(buildid[0])}号楼{roomid[0]}室\n\n统计时间：{stime}\n\n### 最近{days_to_show}天数据\n"
     text += tablestr + "\n"
     if PUSH_PLUS_DETAIL and GITHUB_TRIGGERING_ACTOR:
         website = (
